@@ -1,6 +1,70 @@
-<header>
-    <a href="{% url 'home' %}">Página de inicio</a> | <a href="{% url 'about' %}">Acerca de...</a>
-</header>
-  
-{% block content %}
-{% endblock content %}
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Agenda</title>
+		<link
+			rel="stylesheet"
+			href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400"
+		/>
+		<link
+			href="https://fonts.googleapis.com/icon?family=Material+Icons"
+			rel="stylesheet"
+		/>
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+		/>
+		<style>
+			body {
+				display: flex;
+				min-height: 100vh;
+				flex-direction: column;
+			}
+
+			main {
+				flex: 1 0 auto;
+			}
+		</style>
+
+		<script>
+			document.addEventListener('DOMContentLoaded', function () {
+				var elems = document.querySelectorAll('select');
+				var instances = M.FormSelect.init(elems, {});
+
+				var elems = document.querySelectorAll('.sidenav');
+				var instances = M.Sidenav.init(elems, {});
+			});
+		</script>
+	</head>
+	<body>
+		<header>
+			<div class="navbar-fixed">
+				<nav>
+					<div class="black">
+						<a class="waves-effect waves-light btn-large black"
+							><i class="material-icons right">event_note</i>Agenda</a
+						>
+					</div>
+				</nav>
+			</div>
+		</header>
+		<main>
+			<div class="container">
+				{% block content %} {% endblock content %}
+
+				<div style="float: right">
+					<a
+						style="position: absolute; bottom: 0"
+						href="{% url 'new_task' %}"
+						class="btn-floating btn-large waves-effect waves-light red right"
+					>
+						<i class="material-icons">add</i>
+					</a>
+				</div>
+			</div>
+		</main>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+	</body>
+</html>

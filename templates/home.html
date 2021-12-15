@@ -1,6 +1,35 @@
-<!-- templates/home.html -->
-{% extends 'base.html' %}
+{% extends 'base.html' %} {% block content %}
+<table style="border: 1px solid black" class="centered responsive-table striped">
+	<thead>
+		<tr>
+			<th style="border: 1px solid black">Tarea</th>
+			<th style="border: 1px solid black">Descripcion</th>
+			<th style="border: 1px solid black">Acciones</th>
+		</tr>
+	</thead>
 
-{% block content %}
- <h1>Página de inicio</h1>
+	<tbody>
+		{% if not object_list %}
+		<div class="collection center-align">
+			<a class="collection-item active blue darken-4"
+				>No Hay Tareas disponibles, puedes descansar :3</a
+			>
+		</div>
+		{% else %} {% for task in object_list %}
+		<tr>
+			<td style="border: 1px solid black">{{ task.title }}</td>
+			<td style="border: 1px solid black">{{ task.body }}</td>
+			<td style="border: 1px solid black">
+				<a href="{% url 'edit_task' task.pk %}"
+					><i class="material-icons center">edit</i></a
+				>
+				<a href="{% url 'delete_task' task.pk %}"
+					><i class="material-icons center">delete</i></a
+				>
+			</td>
+		</tr>
+		{% endfor %} {% endif %}
+	</tbody>
+</table>
+
 {% endblock content %}

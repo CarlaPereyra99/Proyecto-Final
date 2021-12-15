@@ -1,0 +1,18 @@
+{% extends 'base.html' %} {% block content %}
+<form action="" method="post">
+	{% csrf_token %} {{form.as_p}}
+	<div class="row center">
+		<div class="col s6">
+			<button class="btn waves-effect amber" type="submit" name="action">
+				Editar Tarea
+				<i class="material-icons right">warning</i>
+			</button>
+		</div>
+		<div class="col s6">
+			<a href="{% url 'home' %}" class="waves-effect blue-grey darken-4 btn"
+				><i class="material-icons right">arrow_back</i>Regresar</a
+			>
+		</div>
+	</div>
+</form>
+{% endblock content %}
